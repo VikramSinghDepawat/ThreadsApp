@@ -7,7 +7,22 @@
 
 import Foundation
 
-enum Auth {
-    case loggedIn
-    case loggedOut
+enum TextFieldPlaceholderText {
+    case email
+    case password
+    case fullname
+    case username
+    
+    var title: String {
+        switch self {
+        case .email:
+            return "Enter your email"
+        case .password:
+            return "Enter your password"
+        case .fullname:
+            return "Enter your fullname"
+        case .username:
+            return "Enter your username"
+        }
+    }
 }

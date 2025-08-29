@@ -7,13 +7,9 @@
 
 import Foundation
 
-enum RegistrationError: Error {
+enum AuthError: Error {
     case invalidEmail
     case invalidPassword
-    case passwordMismatch
-}
-
-enum LoginError: Error {
-    case invalidEmail
-    case invalidPassword
+    case invalidFullName
+    case invalidUsername
 }

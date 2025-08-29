@@ -19,12 +19,12 @@ struct LoginView: View {
                 AppLogoView()
                 
                 VStack {
-                    TextField("Enter your email", text: $email)
-                        .textFieldStyle(CustomTextFieldStyle())
-                    SecureField("Enter your password", text: $password)
-                        .textFieldStyle(CustomTextFieldStyle())
+                    TextField(TextFieldPlaceholderText.email.title, text: $email)
+                        .textInputAutocapitalization(.none)
+                        .modifier(TextFieldModifiers())
+                    SecureField(TextFieldPlaceholderText.password.title, text: $password)
+                        .modifier(TextFieldModifiers())
                 }
-                .padding()
                 
                 NavigationLink {
                     Text("Forgot Password")
@@ -32,18 +32,33 @@ struct LoginView: View {
                     Text("Forgot Password?")
                         .font(.footnote)
                         .fontWeight(.semibold)
-                        
-                        .padding(.top)
+                        .padding(.vertical)
                         .padding(.trailing, 28)
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 
-                ExtractedView()
-
+                CustomButtonView(action: {
+                    print("Login Pressed")
+                }, title: "Login")
+                
                 Spacer()
                 
-                FooterView(title: "Don't have an account?", subtitle: "Sign up")
+                Divider()
+                
+                NavigationLink {
+                    RegistrationView()
+                        .navigationBarBackButtonHidden(true)
+                } label: {
+                    HStack(spacing: 3) {
+                        Text(FooterViewType.registration.title)
+                        Text(FooterViewType.registration.subtitle)
+                            .fontWeight(.semibold)
+                    }
+                    .foregroundColor(.black)
+                    .font(.footnote)
+                }
+                .padding(.vertical, 16)
             }
         }
     }

@@ -13,14 +13,14 @@ struct CustomButtonView: View {
     
     var body: some View {
         Button {
-            print("Login Button Tapped")
+            action()
         } label: {
             Text(title)
                 .font(.headline)
                 .fontWeight(.bold)
                 .kerning(1)
                 .foregroundColor(.white)
-                .frame(maxWidth: .infinity, minHeight: 52)
+                .frame(maxWidth: .infinity, minHeight: 50)
                 .background(Color.black)
                 .cornerRadius(8)
                 .padding()
