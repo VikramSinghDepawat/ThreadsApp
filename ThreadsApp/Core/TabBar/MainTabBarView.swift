@@ -12,7 +12,7 @@ struct MainTabBarView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            Text("Feed View")
+            FeedView()
                 .tabItem {
                     Image(systemName: selectedTab == 0 ? "house.fill" : "house")
                         .environment(\.symbolVariants, selectedTab == 0 ? .fill : .none)
@@ -20,7 +20,7 @@ struct MainTabBarView: View {
                 .onAppear { selectedTab = 0 }
                 .tag(0)
             
-            Text("Explore")
+            ExploreView(state: .follow)
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                 }
