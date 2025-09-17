@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainTabBarView: View {
     @State private var selectedTab: Int = 0
+    @State private var showCreateThreadView: Bool = false
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -42,7 +43,7 @@ struct MainTabBarView: View {
                 .onAppear { selectedTab = 3 }
                 .tag(3)
             
-            Text("Profile")
+            ProfileView()
                 .tabItem {
                     Image(systemName: selectedTab == 4 ? "person.fill" : "person")
                         .environment(\.symbolVariants, selectedTab == 4 ? .fill : .none)
@@ -50,6 +51,14 @@ struct MainTabBarView: View {
                 .onAppear { selectedTab = 4 }
                 .tag(4)
         }
+        .onChange(of: selectedTab, { oldValue, newValue in
+            showCreateThreadView = selectedTab == 2
+        })
+        .sheet(isPresented: $showCreateThreadView, onDismiss: {
+            selectedTab = 0
+        }, content: {
+            ThreadCreationView()
+        })
         .tint(.black)
     }
 }
